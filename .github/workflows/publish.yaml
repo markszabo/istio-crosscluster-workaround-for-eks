@@ -33,8 +33,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: 
-            - ${{ steps.meta.outputs.tags }}
+          tags:
             - markszabo/istio-crosscluster-workaround-for-eks:latest
             - markszabo/istio-crosscluster-workaround-for-eks:${{ env.IMAGE_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
