@@ -25,10 +25,16 @@ jobs:
         with:
           images: markszabo/istio-crosscluster-workaround-for-eks
       
+      - name: Create new tag
+        run: echo "IMAGE_TAG=$(date +'%Y-%m-%d')-${GITHUB_SHA:0:6}" >> $GITHUB_ENV
+        
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: 
+            - ${{ steps.meta.outputs.tags }}
+            - markszabo/istio-crosscluster-workaround-for-eks:latest
+            - markszabo/istio-crosscluster-workaround-for-eks:${{ env.IMAGE_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
