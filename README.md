@@ -3,6 +3,8 @@
 Workaround for multi-network cross-cluster istio communication being broken on EKS (ref: https://github.com/istio/istio/issues/29359).
 This performs the workaround steps decribed in the issue, as summarized here: https://szabo.jp/2021/09/22/multicluster-istio-on-eks/
 
+There is a Github Actions pipeline in this repo pushing this image to: https://hub.docker.com/r/markszabo/istio-crosscluster-workaround-for-eks
+
 ## How to use:
 
 ```bash
