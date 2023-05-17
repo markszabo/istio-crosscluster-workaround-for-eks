@@ -6,7 +6,7 @@ to_update=0
 meshNetworks="networks:"
 
 # foreach remote cluster
-for remote_secret in $(kubectl get secrets -n istio-system -o=name | grep remote-secret); do
+for remote_secret in $(kubectl get secrets -n istio-system -o=name --field-selector type=Opaque | grep remote-secret); do
     echo "Getting cluster name for remote cluster from $remote_secret"
     remote_cluster_name=$(kubectl get "$remote_secret" -n istio-system -o jsonpath='{.metadata.annotations.networking\.istio\.io/cluster}')
     echo "Got cluster name: $remote_cluster_name"
